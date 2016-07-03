@@ -1,0 +1,10 @@
+.contact-form-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-form-layout__content {
+  padding: 24px;
+  flex: none;
+}
