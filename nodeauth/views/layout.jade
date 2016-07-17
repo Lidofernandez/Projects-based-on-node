@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='My website on Express')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0')
+    title Koala Website
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en')
+    link(rel='stylesheet', href='/material-design-lite/material.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+  body
+  .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+    header.mdl-layout__header.mdl-layout__header--waterfall
+      // Top row, always visible
+      .mdl-layout__header-row
+        // Title
+        span.mdl-layout-title NodeAuth
+        .mdl-layout-spacer
+        nav.mdl-navigation
+          if user
+            a.mdl-navigation__link(href='/users/logout') Logout
+      // Bottom row, not visible on scroll
+      .mdl-layout__header-row
+        .mdl-layout-spacer
+        // Navigation
+        nav.mdl-navigation
+          if user
+            a(class=(title == 'Members' ? 'active' : '')).mdl-navigation__link(href='/') Members
+          if !user
+            a(class=(title == 'Register' ? 'active' : '')).mdl-navigation__link(href='/users/register') Register
+            a(class=(title == 'Login' ? 'active' : '')).mdl-navigation__link(href='/users/login') Login
+    .mdl-layout__drawer
+      span.mdl-layout-title NodeAuth
+      nav.mdl-navigation
+        if user
+          a.mdl-navigation__link(href='/') Members
+        if !user
+          a.mdl-navigation__link(href='/users/register') Register
+          a.mdl-navigation__link(href='/users/login') Login
+        if user
+            a.mdl-navigation__link(href='/users/logout') Logout
+    main.mdl-layout__content
+      .page-content
+      != messages()
+      block content
+
+  script(src='/jquery/dist/jquery.min.js')
+  script(src='/material-design-lite/material.min.js')

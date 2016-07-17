@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .contact-form-layout
+    .contact-form-layout__content
+      .mdl-card.mdl-shadow--6dp
+        .mdl-card__title.mdl-color--primary.mdl-color-text--white
+          div
+            h2.page-header Register
+            p Please register using the form bellow
+            ul.errors
+              if errors
+                each error, i in errors
+                  li.alert.alert-danger #{error.msg}
+        .mdl-card__supporting-text
+          form(method='post', action='/users/register', enctype='multipart/form-data')
+            .mdl-textfield.mdl-js-textfield
+              input#name.mdl-textfield__input(name='name', type='text', placeholder='Enter Name')
+              label.mdl-textfield__label(for='name') Name
+            .mdl-textfield.mdl-js-textfield
+              input#email.mdl-textfield__input(name='email', type='email', placeholder='Enter Email')
+              label.mdl-textfield__label(for='email') Email
+            .mdl-textfield.mdl-js-textfield
+              input#username.mdl-textfield__input(name='username', type='text', placeholder='Enter Username')
+              label.mdl-textfield__label(for='username') Username
+            .mdl-textfield.mdl-js-textfield
+              input#password.mdl-textfield__input(name='password', type='password', placeholder='Enter Password')
+              label.mdl-textfield__label(for='password') Password
+            .mdl-textfield.mdl-js-textfield
+              input#password2.mdl-textfield__input(name='password2', type='password', placeholder='Enter Password')
+              label.mdl-textfield__label(for='password2') Confirm Password
+            div
+              label Profile Image
+              input#profileimage(name='profileimage', type='file')
+            .mdl-card__actions.mdl-card--border
+              button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(name='submit', type='submit') Register

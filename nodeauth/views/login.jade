@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .contact-form-layout
+    .contact-form-layout__content
+      .mdl-card.mdl-shadow--6dp
+        .mdl-card__title.mdl-color--primary.mdl-color-text--white
+          div
+            h2.page-header Login
+            p Please login bellow
+        .mdl-card__supporting-text
+          form(method='post', action='/users/login')
+            .mdl-textfield.mdl-js-textfield
+              input#username.mdl-textfield__input(name='username', type='text', placeholder='Enter Username')
+              label.mdl-textfield__label(for='username') Username
+            .mdl-textfield.mdl-js-textfield
+              input#password.mdl-textfield__input(name='password', type='password', placeholder='Enter Password')
+              label.mdl-textfield__label(for='password') Password
+            .mdl-card__actions.mdl-card--border
+              button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(name='submit', type='submit') Login
