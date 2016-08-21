@@ -7,6 +7,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "autoprefixer": "*",
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.15.1",
     "connect-flash": "*",
@@ -21,11 +22,16 @@
     "material-design-lite": "*",
     "mongodb": "*",
     "mongoose": "*",
+    "moment": "*",
+    "monk": "*",
     "morgan": "~1.7.0",
     "multer": "*",
+    "node-sass-middleware": "*",
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
+    "postcss-middleware": "*",
+    "postcss-safe-parser": "*",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {

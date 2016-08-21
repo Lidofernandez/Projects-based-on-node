@@ -13,14 +13,51 @@ var multer = require('multer');
 var upload = multer({dest: './uploads'});
 var flash = require('connect-flash');
 var bcrypt = require('bcryptjs');
+var moment = require('moment');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+
 var db = mongoose.connection;
+var blogDb = require('monk')('localhost/nodeblog');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var sassMiddleware = require('node-sass-middleware');
+var postcssMiddleware = require('postcss-middleware');
+var autoprefixer = require('autoprefixer');
 
 var app = express();
+
+// styles engine setup
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, '/stylesheets/sass'),
+    dest: path.join(__dirname, '/public/stylesheets'),
+    debug: true,
+    outFile: path.join(__dirname, 'public', 'stylesheets', 'style.css'),
+    sourceMap: true,
+    sourceComments: true,
+    outputStyle: 'compressed',
+    prefix: '/stylesheets'
+  })
+);
+app.use(
+  '/stylesheets', postcssMiddleware({
+    src: function(req) {
+      return path.join(__dirname, 'public', 'stylesheets', req.path);
+    },
+    plugins: [
+      autoprefixer()
+    ],
+    options: {
+      map: {
+        inline: false
+      }
+    }
+  }
+));
+
+app.set('port', process.env.PORT || 3000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -66,6 +103,11 @@ app.use(expressValidator({
 app.use(require('connect-flash')());
 app.use(function(req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+app.use(function(req, res, next) {
+  req.blogDb = db;
   next();
 });
 
