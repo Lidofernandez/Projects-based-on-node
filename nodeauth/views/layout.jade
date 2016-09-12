@@ -27,7 +27,9 @@ html
         // Navigation
         nav.mdl-navigation
           if user
-            a(class=(title == 'Members' ? 'active' : '')).mdl-navigation__link(href='/') Members
+            a(class=(title == 'Home' ? 'active' : '')).mdl-navigation__link(href='/') Home
+            a.mdl-navigation__link(href='/users/logout') Add Post
+            a.mdl-navigation__link(href='/users/logout') Add Category
           if !user
             a(class=(title == 'Register' ? 'active' : '')).mdl-navigation__link(href='/users/register') Register
             a(class=(title == 'Login' ? 'active' : '')).mdl-navigation__link(href='/users/login') Login
@@ -35,7 +37,9 @@ html
       span.mdl-layout-title NodeAuth
       nav.mdl-navigation
         if user
-          a.mdl-navigation__link(href='/') Members
+          a.mdl-navigation__link(href='/') Home
+          a.mdl-navigation__link(href='/users/logout') Add Post
+          a.mdl-navigation__link(href='/users/logout') Add Category
         if !user
           a.mdl-navigation__link(href='/users/register') Register
           a.mdl-navigation__link(href='/users/login') Login
